@@ -1,0 +1,8 @@
+keys from gdrive
+dict_keys(['kind', 'id', 'etag', 'selfLink', 
+'alternateLink', 'embedLink', 'iconLink', 'title', 'mimeType', 
+'labels', 'copyRequiresWriterPermission', 'createdDate', 'modifiedDate', 
+'modifiedByMeDate', 'lastViewedByMeDate', 'markedViewedByMeDate', 'version', 'parents', 
+'userPermission', 'quotaBytesUsed', 'ownerNames', 'owners', 'lastModifyingUserName', 
+'lastModifyingUser', 'capabilities', 'editable', 'copyable', 'writersCanShare', 
+'shared', 'explicitlyTrashed', 'appDataContents', 'spaces'])
