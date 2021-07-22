@@ -45,7 +45,7 @@ def list_all():
 @app.route("/listall/<parent_folder_id>")
 def list_subfolders(parent_folder_id):
     """
-    [parent_folder_id]: string
+    [parent_folder_id]: string of parent folder ID given by api
     ------------------
     [returns]: All Files under an ID. If ID does not refer to a folder, then returns empty list.
     """
