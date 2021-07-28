@@ -9,8 +9,15 @@ def auth():
     gauth.LocalWebserverAuth()
     drive = GoogleDrive(gauth)
     drive = drive
-    return drive
+    #return drive
 
+
+
+    
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
+drive = GoogleDrive(gauth)
+drive = drive
 
 
 def create_file(title, content):
