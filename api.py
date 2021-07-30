@@ -1,25 +1,30 @@
-from flask import Flask
+from flask import Flask, jsonify, render_template_string
+from flask.templating import render_template
 from gdrive import *
 import json
-from flask import jsonify
 
 from flask_cors import CORS, cross_origin
-
-
 
 app = Flask(__name__)
 cors = CORS(app)
 
+drive = None
+
 
 @app.route("/auth")
 def api_auth():
-    drive = auth()
-    print(drive)
-    return {"Drive": "success"}
+    global drive 
 
-@app.route("/")
+    gauth = GoogleAuth()
+    gauth.LocalWebserverAuth()
+    drive_created = GoogleDrive(gauth)
+    drive = drive_created
+    return {"Message": "Done"}
+
+@app.route("/test")
 def hello_world():
     return "<p>Hello, World!</p>"
+
 
 
 @app.route("/listall")
@@ -30,14 +35,38 @@ def list_all():
     """
     all_files = []
     file_list = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
+    print(file_list)
     for file1 in file_list:
         file_obj = {
             "title": file1['title'],
             "id": file1['id'],
             "type": file1['mimeType']
         }
-        all_files.append(json.dumps(file_obj))
-    return {"Success" : all_files}
+        all_files.append(file_obj)
+        print(all_files)
+    return jsonify(all_files)
+
+    #     return render_template_string('''
+    #     <table>
+    #             <tr>
+    #                 <td> Name </td> 
+    #                 <td> Status </td>
+    #             </tr>
+
+    #     {% for label in labels %}
+    #         {% for id, title in label.items() %}
+
+    #                 <tr>
+    #                     <td>{{ id }}</td> 
+    #                     <td>{{ title }}</td>
+    #                 </tr>
+
+    #         {% endfor %}
+    #     {% endfor %}
+
+
+    #     </table>
+    # ''', labels=all_files)
 
 
 
@@ -58,7 +87,7 @@ def list_subfolders(parent_folder_id):
             "type": file['mimeType']
         }
         all_subjects.append(json.dumps(subject))
-    return {"Success" : all_subjects}
+    return jsonify(all_subjects)
 
 
 @app.route("/createDoc", methods=["POST"])

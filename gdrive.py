@@ -2,23 +2,23 @@ from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 import os
 
-drive = ""
+drive = None
 
-def auth():
-    gauth = GoogleAuth()
-    gauth.LocalWebserverAuth()
-    drive = GoogleDrive(gauth)
-    drive = drive
-    #return drive
+# def auth():
+#     gauth = GoogleAuth()
+#     gauth.LocalWebserverAuth()
+#     drive = GoogleDrive(gauth)
+#     drive = drive
+#     #return drive
 
+
+# gauth = GoogleAuth()
+# gauth.LocalWebserverAuth()
+# drive = GoogleDrive(gauth)
+# drive = drive
 
 
     
-gauth = GoogleAuth()
-gauth.LocalWebserverAuth()
-drive = GoogleDrive(gauth)
-drive = drive
-
 
 def create_file(title, content):
     """
